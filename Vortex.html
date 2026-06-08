@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Vortex</title>
+    <link rel="icon" href="v.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * { padding: 0px; margin: 0px; box-sizing: border-box; }
+		
+		
+        body {  background: linear-gradient(-45deg, #6D0CCF, #280137, #301934, #520075);
+            background-size: 400% 400%;
+            animation: darkNeonFlow 12s ease infinite;
+            min-height: 120vh;
+            display: flex;
+            flex-direction: column;
+			font-family:arial;
+			}
+
+        .content1 {
+            background: linear-gradient(-45deg, #6D0CCF, #280137, #301934, #520075);
+            background-size: 400% 400%;
+            animation: darkNeonFlow 12s ease infinite;
+            min-height: 120vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        @keyframes darkNeonFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .nav { display: flex; justify-content: center; align-items: center; z-index: 10; }
+        .font {
+			font-size: 22px; 
+			color: white;
+			margin: 0 20px; 
+			cursor: pointer; 
+			color: #FFFFFF;
+			text-shadow: #FFF 0px 0px 5px, #FFF 0px 0px 10px, #FFF 0px 0px 15px, #FF2D95 0px 0px 20px, #FF2D95 0px 0px 30px, #FF2D95 0px 0px 40px, #FF2D95 0px 0px 50px, #FF2D95 0px 0px 75px;
+		}
+        .middle img { height: 150px; width: 150px; }
+        .sideup { margin-top: 20px; z-index: 10; }
+        .outersearch { justify-content: center; display: flex; }
+        .innersearch { height: 40px; width: 600px; border-radius: 25px; padding-left: 15px; background: transparent; color: white; border: 1px solid purple; outline: none; }
+        .button { height: 40px; width: 100px; border-radius: 25px; background: purple; color: white; border: none; cursor: pointer; margin-left: -110px; transition: 0.3s; }
+        .button:hover { background: #8e24aa; }
+
+        .sphere-container {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            perspective: 1500px; 
+            margin-top: 50px;
+        }
+
+        .sphere {
+            position: relative;
+            width: 200px;
+            height: 250px;
+            transform-style: preserve-3d;
+            animation: autoRotateSphere 20s linear infinite;
+			margin-top:0%;
+        }
+
+        @keyframes autoRotateSphere {
+            0% { transform: rotateX(-10deg) rotateY(0deg); }
+            100% { transform: rotateX(-10deg) rotateY(360deg); }
+        }
+
+        .item {
+            position: absolute;
+            inset: 0;
+            transform-style: preserve-3d;
+            /* Formula: rotateY( (pos-1) * (360/total) ) translateZ(radius) */
+            transform: rotateY(calc((var(--i) - 1) * 45deg)) translateZ(400px);
+        }
+
+        .item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 15px;
+            border: 2px solid rgba(128, 0, 128, 0.5);
+            box-shadow: 0 0 30px rgba(109, 12, 207, 0.5);
+            transition: 0.5s;
+        }
+        
+        .item img:hover {
+            transform: scale(1.1);
+            border-color: #6D0CCF;
+        }
+		
+		.section1{
+			
+		}
+	
+    </style>
+</head>
+<body>
+    <div class="content1">
+        <div class="nav" height="1px;">
+            <div class="font">Store</div>
+            <div class="font">Categories</div>
+            <div class="middle"><img src="V.png" alt="Vortex Logo"></div>
+            <div class="font">About</div>
+            <div class="font">Workshop</div>
+        </div>
+        <div class="sphere-container" style="margin-top:0%;">
+            <div class="sphere">
+                <div class="item" style="--i:1;"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_tsG3tuCl498BCSaHEU-gDwdLu1RV0KwL-A&s"></div>
+                <div class="item" style="--i:2;"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOCNGI0y5BtKXyC_yhZWT-7ypmW2bTy0aMYg&s"></div>
+                <div class="item" style="--i:3;"><img src="https://image.api.playstation.com/cdn/UP1004/CUSA03041_00/Hpl5MtwQgOVF9vJqlfui6SDB5Jl4oBSq.png"></div>
+                <div class="item" style="--i:4;"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZbr5cPAmBx_h7waCKkI7x_1_LSJxiOKvV_Q&s"></div>
+                <div class="item" style="--i:5;"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNJmPifchgSp5dk4ml14HFT8csWfs1z_uLmA&s"></div>
+                <div class="item" style="--i:6;"><img src="https://wallpapersok.com/images/high/hd-art-poster-hollow-knight-bjbn60oew0z5b8vt.jpg"></div>
+                <div class="item" style="--i:7;"><img src="https://i.pinimg.com/736x/45/80/68/45806850de6ce80522ef9c75227b3103.jpg"></div>
+                <div class="item" style="--i:8;"><img src="https://image.api.playstation.com/vulcan/ap/rnd/202503/2716/f6b1e4512ee6061913f7d604da8f5f39566be56ca32a68ee.png"></div>
+            </div>
+        </div>
+    </div>
+	
+	<section cLASS="section1">
+		heloo
+		heloo
+		heloo
+	</section>
+</body>
+</html>

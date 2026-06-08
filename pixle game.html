@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Simple Canvas RPG</title>
+<style>
+  body {
+    background: #111;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  canvas {
+    border: 3px solid white;
+    image-rendering: pixelated;
+  }
+</style>
+</head>
+<body>
+
+<canvas id="game" width="480" height="320"></canvas>
+
+<script>
+const canvas = document.getElementById("game");
+const ctx = canvas.getContext("2d");
+
+// --- PLAYER ---
+const player = {
+  x: 50,
+  y: 50,
+  size: 16,
+  speed: 2,
+  color: "#00ff88"
+};
+
+// --- NPC ---
+const npc = {
+  x: 200,
+  y: 150,
+  size: 16,
+  color: "#ff4444"
+};
+
+// --- INPUT ---
+const keys = {};
+window.addEventListener("keydown", e => keys[e.key] = true);
+window.addEventListener("keyup", e => keys[e.key] = false);
+
+// --- GAME LOOP ---
+function update() {
+  if (keys["ArrowUp"] || keys["w"]) player.y -= player.speed;
+  if (keys["ArrowDown"] || keys["s"]) player.y += player.speed;
+  if (keys["ArrowLeft"] || keys["a"]) player.x -= player.speed;
+  if (keys["ArrowRight"] || keys["d"]) player.x += player.speed;
+
+  // Boundaries
+  player.x = Math.max(0, Math.min(canvas.width - player.size, player.x));
+  player.y = Math.max(0, Math.min(canvas.height - player.size, player.y));
+}
+
+function drawMap() {
+  ctx.fillStyle = "#2a7b2a";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  // Grid (pixel RPG feel)
+  ctx.strokeStyle = "rgba(0,0,0,0.2)";
+  for (let i = 0; i < canvas.width; i += 16) {
+    for (let j = 0; j < canvas.height; j += 16) {
+      ctx.strokeRect(i, j, 16, 16);
+    }
+  }
+}
+
+function drawCharacter(char) {
+  ctx.fillStyle = char.color;
+  ctx.fillRect(char.x, char.y, char.size, char.size);
+}
+
+function draw() {
+  drawMap();
+  drawCharacter(npc);
+  drawCharacter(player);
+
+  // Text hint
+  ctx.fillStyle = "white";
+  ctx.font = "12px monospace";
+  ctx.fillText("Move: WASD / Arrow Keys", 10, 15);
+}
+
+function gameLoop() {
+  update();
+  draw();
+  requestAnimationFrame(gameLoop);
+}
+
+gameLoop();
+</script>
+
+</body>
+</html>
